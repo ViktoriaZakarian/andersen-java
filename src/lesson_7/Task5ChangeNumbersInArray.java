@@ -3,6 +3,7 @@ package lesson_7;
 import java.util.Arrays;
 
 public class Task5ChangeNumbersInArray {
+
     public static String changeNumbersInArray() {
         int[] array = {1, 1, 1, 0, 0, 1, 0, 1, 0, 0};
         for (int i = 0; i < array.length; i++) {

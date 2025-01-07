@@ -3,6 +3,7 @@ package lesson_7;
 import java.util.Arrays;
 
 public class Task9MovingNumbersInTheArray {
+
     public static String movingNumbersInTheArray(int[] arr, int n) {
         int number;
         int lastPosition = arr.length - 1;
