@@ -5,10 +5,10 @@ public class Animal {
     private String name;
 
     public void run(int length) {
-        System.out.println(name + " пробежал " + length + " м.");
+        System.out.println(" пробежал " + length + " м.");
     }
 
     public void swim(int length) {
-        System.out.println(name + " проплыл " + length + " м.");
+        System.out.println(" проплыл " + length + " м.");
     }
 }

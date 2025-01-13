@@ -1,6 +1,7 @@
 package lesson_9;
 
 public class Plate {
+
     private int food;
 
     public int getFood() {

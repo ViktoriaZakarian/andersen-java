@@ -6,11 +6,24 @@ public class Dog extends Animal {
 
     private String name;
 
+    public Dog(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     @Override
     public void run(int length) {
         if (length > 500) {
-            System.out.println("Собака не может пробежать больше 500 м");
+            System.out.println(name + " не может пробежать больше 500 м");
         } else {
+            System.out.print(name);
             super.run(length);
         }
     }
@@ -18,8 +31,9 @@ public class Dog extends Animal {
     @Override
     public void swim(int length) {
         if (length > 10) {
-            System.out.println("Собака не может проплыть больше 10 м");
+            System.out.println(name + " не может проплыть больше 10 м");
         } else {
+            System.out.print(name);
             super.swim(length);
         }
     }

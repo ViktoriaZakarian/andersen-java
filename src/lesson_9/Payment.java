@@ -2,7 +2,7 @@ package lesson_9;
 
 public class Payment {
 
-    public static void calculateTheTotalCost(Product[] products) {
+    public void calculateTheTotalCost(Product[] products) {
         System.out.println("Список продуктов:");
         for (Product prod : products) {
             System.out.println(prod.toString());
@@ -14,7 +14,7 @@ public class Payment {
         System.out.println("Итоговая стоимость: " + totalCost);
     }
 
-    public static class Product {
+    public class Product {
 
         private String name;
         private int price;

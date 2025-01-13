@@ -16,15 +16,16 @@ public class Cat extends Animal {
     @Override
     public void run(int length) {
         if (length > 200) {
-            System.out.println("Кот не может пробежать больше 200 м");
+            System.out.println(name + " не может пробежать больше 200 м");
         } else {
+            System.out.print(name);
             super.run(length);
         }
     }
 
     @Override
     public void swim(int length) {
-        System.out.println("Кот  не умеет плавать");
+        System.out.println(name + " не умеет плавать");
     }
 
     public static int counterOfCats(List<Animal> animals) {
@@ -37,25 +38,31 @@ public class Cat extends Animal {
         return counter;
     }
 
-    public void eat(Plate plate) {
+    public int eat(Plate plate) {
+        int leftOverFood = -1;
         if (appetite > plate.getFood()) {
             System.out.println("В миске не хватает еды");
         } else {
-            plate.decreaseFood(appetite);
+            leftOverFood = plate.decreaseFood(appetite);
+            System.out.println("В миске осталось еды: " + leftOverFood);
         }
+        return leftOverFood;
     }
 
-    public boolean isTheCatFull(Plate plate) {
-        if (plate.decreaseFood(appetite) >= 0) {
-            satiety = true;
+    public static boolean isTheCatFull(Plate plate, Cat cat) {
+        if (cat.eat(plate) >= 0) {
+            cat.satiety = true;
         }
-        return satiety;
+        return cat.satiety;
     }
 
-    public void infoAboutSatietyOfCats(Cat[] cats, Plate plate) {
+    public static void infoAboutSatietyOfCats(Cat[] cats, Plate plate) {
         for (Cat cat : cats) {
-            cat.eat(plate);
-            System.out.println("Кот " + name + " сыт: " + isTheCatFull(plate, cat));
+            if (isTheCatFull(plate, cat)) {
+                System.out.println("Кот " + cat.name + " сыт");
+            } else {
+                System.out.println("Котику " + cat.name + " не хватило еды(");
+            }
         }
     }
 }
