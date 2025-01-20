@@ -4,9 +4,7 @@ public abstract class Fruit {
 
     protected double weight;
 
-    public double getWeight() {
-        return weight;
-    }
+    public abstract double getWeight();
 
     public void setWeight(double weight) {
         this.weight = weight;

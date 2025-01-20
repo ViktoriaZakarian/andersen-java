@@ -1,6 +1,5 @@
 package lesson_10;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Box<T extends Fruit> {
@@ -20,20 +19,14 @@ public class Box<T extends Fruit> {
     }
 
     public double getWeight() {
-        double weightOfFruit = 0;
-        if (box.getFirst() instanceof Orange) {
-            weightOfFruit = Orange.WEIGHT;
-        } else if (box.getFirst() instanceof Apple) {
-            weightOfFruit = Apple.WEIGHT;
-        } else {
-            System.out.println("В коробке нет ни яблок, ни апельсинов");
-        }
+        if (box.isEmpty()) return 0;
+        double weightOfFruit = box.getFirst().getWeight();
         return (double) box.size() * weightOfFruit;
     }
 
     public boolean compare(Box<?> box2) {
         boolean isTheSame = false;
-        if (this.getWeight() == box2.getWeight()) {
+        if (Math.abs(this.getWeight() - box2.getWeight()) < 0.0001) {
             isTheSame = true;
         }
         return isTheSame;
@@ -41,8 +34,8 @@ public class Box<T extends Fruit> {
 
     public Box<T> moveFruitsIntoThisBox(Box<T> box2) {
         if (getClass() == box2.getClass()) {
-            box.addAll(box2.getBox());
-            box2.getBox().removeAll(box2.getBox());
+            this.box.addAll(box2.box);
+            box2.box.clear();
         }
         return this;
     }
