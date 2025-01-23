@@ -2,15 +2,14 @@ package lesson_12;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
-public class AppData {
+public class AppData2 {
 
     private String[] header;
     private int[][] data;
 
-    public AppData(String[] header, int[][] data) {
+    public AppData2(String[] header, int[][] data) {
         this.header = header;
         this.data = data;
     }
@@ -25,13 +24,20 @@ public class AppData {
 
     public void save(String pathToFile) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(pathToFile))) {
-            writer.write(String.join(";", header));
+            for (String str : header) {
+                writer.write(str);
+                writer.write(";");
+            }
             writer.newLine();
             for (int[] arr : data) {
-                writer.write(Arrays.stream(arr)
-                        .mapToObj(String::valueOf)
-                        .reduce((a, b) -> a + ";" + b)
-                        .orElse(""));
+                for (int i = 0; i < arr.length; i++) {
+                    if (i != arr.length - 1) {
+                        writer.write(i);
+                        writer.write(";");
+                    } else {
+                        writer.write(i);
+                    }
+                }
                 writer.newLine();
             }
         } catch (IOException e) {
@@ -39,23 +45,29 @@ public class AppData {
         }
     }
 
-    public static AppData open(String pathToFile) {
+    public static AppData2 open(String pathToFile) {
         try (BufferedReader reader = new BufferedReader(new FileReader(pathToFile))) {
             String str;
-            String [] header = null;
+            String[] header = null;
             if ((str = reader.readLine()) != null) {
                 header = str.split(";");
             }
             List<int[]> dataList = new ArrayList<>();
             String line;
             while ((line = reader.readLine()) != null) {
-                int[] array = Arrays.stream(line.split(";"))
-                        .mapToInt(Integer::parseInt)
-                        .toArray();
-                dataList.add(array);
+                int[] arr = new int[line.length()];
+                String[] nums = line.split(";");
+                for (int i = 0; i < nums.length; i++) {
+                    try {
+                        arr[i] = Integer.parseInt(nums[i]);
+                    } catch (NumberFormatException e) {
+                        e.getMessage();
+                    }
+                }
+                dataList.add(arr);
             }
             int [][] data = dataList.toArray(new int[0][]);
-            return new AppData(header, data);
+            return new AppData2(header, data);
         } catch (IOException e) {
             e.printStackTrace();
             return null;
