@@ -32,10 +32,10 @@ public class AppData2 {
             for (int[] arr : data) {
                 for (int i = 0; i < arr.length; i++) {
                     if (i != arr.length - 1) {
-                        writer.write(i);
+                        writer.write(String.valueOf(arr[i]));
                         writer.write(";");
                     } else {
-                        writer.write(i);
+                        writer.write(String.valueOf(arr[i]));
                     }
                 }
                 writer.newLine();
@@ -55,8 +55,8 @@ public class AppData2 {
             List<int[]> dataList = new ArrayList<>();
             String line;
             while ((line = reader.readLine()) != null) {
-                int[] arr = new int[line.length()];
                 String[] nums = line.split(";");
+                int[] arr = new int[nums.length];
                 for (int i = 0; i < nums.length; i++) {
                     try {
                         arr[i] = Integer.parseInt(nums[i]);
