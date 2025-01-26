@@ -16,11 +16,6 @@ public class Main {
         appData.save(filePath);
 
         AppData loadedData = AppData.open(filePath);
-        if (loadedData != null) {
-            System.out.println(Arrays.toString(loadedData.getHeader()));
-            for (int[] arr : loadedData.getData()) {
-                System.out.println(Arrays.toString(arr));
-            }
-        }
+        loadedData.printInfo();
     }
 }

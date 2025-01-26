@@ -2,6 +2,7 @@ package lesson_12;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class AppData2 {
@@ -66,11 +67,20 @@ public class AppData2 {
                 }
                 dataList.add(arr);
             }
-            int [][] data = dataList.toArray(new int[0][]);
+            int[][] data = dataList.toArray(new int[0][]);
             return new AppData2(header, data);
         } catch (IOException e) {
             e.printStackTrace();
             return null;
+        }
+    }
+
+    public void printInfo() {
+        if (this != null) {
+            System.out.println(Arrays.toString(header));
+            for (int[] arr : data) {
+                System.out.println(Arrays.toString(arr));
+            }
         }
     }
 }

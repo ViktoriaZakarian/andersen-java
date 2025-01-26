@@ -42,7 +42,7 @@ public class AppData {
     public static AppData open(String pathToFile) {
         try (BufferedReader reader = new BufferedReader(new FileReader(pathToFile))) {
             String str;
-            String [] header = null;
+            String[] header = null;
             if ((str = reader.readLine()) != null) {
                 header = str.split(";");
             }
@@ -54,11 +54,20 @@ public class AppData {
                         .toArray();
                 dataList.add(array);
             }
-            int [][] data = dataList.toArray(new int[0][]);
+            int[][] data = dataList.toArray(new int[0][]);
             return new AppData(header, data);
         } catch (IOException e) {
             e.printStackTrace();
             return null;
+        }
+    }
+
+    public void printInfo() {
+        if (this != null) {
+            System.out.println(Arrays.toString(header));
+            for (int[] arr : data) {
+                System.out.println(Arrays.toString(arr));
+            }
         }
     }
 }
